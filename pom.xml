@@ -1,0 +1,120 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.jwebmp</groupId>
+        <artifactId>jwebmp-parent</artifactId>
+        <version>0.0.0_0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>guiced-servlets-request-scoper</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Guiced Servlets Request Scoping</name>
+    <description>Scopes units of work and transactions to an HTTP Request
+    </description>
+    <url>https://github.com/GedMarc/GuicedServlets</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.jwebmp</groupId>
+            <artifactId>guiced-injection</artifactId>
+            <version>${project.version}</version>
+            <classifier>${jwebmp.runtime.classifier}</classifier>
+            <optional>true</optional>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jwebmp</groupId>
+            <artifactId>jwebmp-log-master</artifactId>
+            <version>${project.version}</version>
+            <classifier>${jwebmp.runtime.classifier}</classifier>
+            <optional>true</optional>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jwebmp</groupId>
+            <artifactId>guiced-persistence</artifactId>
+            <version>${project.version}</version>
+            <classifier>${jwebmp.runtime.classifier}</classifier>
+            <optional>true</optional>
+            <type>jar</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.jwebmp</groupId>
+            <artifactId>guiced-servlets</artifactId>
+            <version>${project.version}</version>
+            <classifier>${jwebmp.runtime.classifier}</classifier>
+            <optional>true</optional>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-persist</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <scm>
+        <url>https://github.com/GedMarc/GuicedServlets.git</url>
+    </scm>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/GedMarc/GuicedServlets/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>TeamCity</system>
+        <url>http://jwebmp.com/teamcity</url>
+    </ciManagement>
+
+</project>

@@ -34,6 +34,7 @@ public class SiteRequestScopedFilterBinder
 	@Override
 	public void onBind(GuiceSiteInjectorModule module)
 	{
+		SiteRequestScopedFilterBinder.log.config("Loading Request Scope Transactions");
 		Set<Class<? extends Annotation>> workOn = AbstractDatabaseProviderModule.getBoundAnnotations();
 		workOn.removeIf(SiteRequestScopedFilterBinder.excludedAnnotations::contains);
 		for (Class<? extends Annotation> aClass : workOn)
@@ -42,5 +43,11 @@ public class SiteRequestScopedFilterBinder
 			      .through(new PersistFilter(aClass));
 			SiteRequestScopedFilterBinder.log.config("Request Scoped Filter Added for @" + aClass.getName());
 		}
+	}
+
+	@Override
+	public Integer sortOrder()
+	{
+		return 150;
 	}
 }

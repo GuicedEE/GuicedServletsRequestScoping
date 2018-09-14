@@ -52,12 +52,6 @@ public final class PersistFilter
 	private Key<UnitOfWork> unitOfWorkKey;
 	private Key<PersistService> persistServiceKey;
 
-	public PersistFilter()
-	{
-		this.unitOfWorkKey = Key.get(UnitOfWork.class);
-		this.persistServiceKey = Key.get(PersistService.class);
-	}
-
 	public PersistFilter(Class<? extends Annotation> annotation)
 	{
 		this.unitOfWorkKey = Key.get(UnitOfWork.class, annotation);
@@ -78,7 +72,6 @@ public final class PersistFilter
 			final FilterChain filterChain)
 			throws IOException, ServletException
 	{
-
 		GuiceContext.get(unitOfWorkKey)
 		            .begin();
 		try

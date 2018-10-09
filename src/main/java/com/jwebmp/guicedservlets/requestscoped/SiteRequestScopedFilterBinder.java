@@ -24,7 +24,7 @@ public class SiteRequestScopedFilterBinder
 	 * <p>
 	 * A set of annotations to not assign request scope transactions to
 	 *
-	 * @return the excludedAnnotations (type Set<Class<? extends Annotation>>) of this SiteRequestScopedFilterBinder object.
+	 * @return the excludedAnnotations (type Set Class ? extends Annotation ) of this SiteRequestScopedFilterBinder object.
 	 */
 	public static Set<Class<? extends Annotation>> getExcludedAnnotations()
 	{

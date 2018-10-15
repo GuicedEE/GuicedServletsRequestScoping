@@ -54,8 +54,8 @@ public final class PersistFilter
 
 	public PersistFilter(Class<? extends Annotation> annotation)
 	{
-		this.unitOfWorkKey = Key.get(UnitOfWork.class, annotation);
-		this.persistServiceKey = Key.get(PersistService.class, annotation);
+		unitOfWorkKey = Key.get(UnitOfWork.class, annotation);
+		persistServiceKey = Key.get(PersistService.class, annotation);
 	}
 
 	@Override
@@ -67,9 +67,9 @@ public final class PersistFilter
 
 	@Override
 	public void doFilter(
-			final ServletRequest servletRequest,
-			final ServletResponse servletResponse,
-			final FilterChain filterChain)
+			ServletRequest servletRequest,
+			ServletResponse servletResponse,
+			FilterChain filterChain)
 			throws IOException, ServletException
 	{
 		GuiceContext.get(unitOfWorkKey)

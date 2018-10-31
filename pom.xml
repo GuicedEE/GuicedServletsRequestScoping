@@ -21,61 +21,18 @@
     <dependencies>
         <dependency>
             <groupId>com.jwebmp</groupId>
-            <artifactId>guiced-injection</artifactId>
-            <version>${project.version}</version>
-            <classifier>${jwebmp.runtime.classifier}</classifier>
-            <!--<optional>true</optional>-->
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jwebmp</groupId>
-            <artifactId>jwebmp-log-master</artifactId>
-            <version>${project.version}</version>
-            <classifier>${jwebmp.runtime.classifier}</classifier>
-            <!--<optional>true</optional>-->
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jwebmp</groupId>
             <artifactId>guiced-persistence</artifactId>
             <version>${project.version}</version>
             <classifier>${jwebmp.runtime.classifier}</classifier>
             <!--<optional>true</optional>-->
             <type>jar</type>
         </dependency>
-
         <dependency>
             <groupId>com.jwebmp</groupId>
             <artifactId>guiced-servlets</artifactId>
             <version>${project.version}</version>
             <classifier>${jwebmp.runtime.classifier}</classifier>
             <!--<optional>true</optional>-->
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>javax.persistence-api</artifactId>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-servlet</artifactId>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-persist</artifactId>
             <type>jar</type>
         </dependency>
 

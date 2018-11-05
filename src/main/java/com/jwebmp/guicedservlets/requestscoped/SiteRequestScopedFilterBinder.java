@@ -1,7 +1,7 @@
 package com.jwebmp.guicedservlets.requestscoped;
 
 import com.jwebmp.guicedpersistence.db.AbstractDatabaseProviderModule;
-import com.jwebmp.guicedservlets.GuiceSiteInjectorModule;
+import com.jwebmp.guicedservlets.services.GuiceSiteInjectorModule;
 import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
 import com.jwebmp.logger.LogFactory;
 

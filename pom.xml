@@ -61,10 +61,10 @@
         </dependency>
 
         <dependency>
-            <groupId>commons-io</groupId>
+            <groupId>com.jwebmp</groupId>
             <artifactId>commons-io</artifactId>
             <scope>test</scope>
-            <type>jar</type>
+            <version>${project.version}</version>
         </dependency>
 
     </dependencies>

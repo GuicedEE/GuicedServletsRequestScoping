@@ -1,6 +1,6 @@
 package com.jwebmp.guicedservlets.requestscoped;
 
-import com.jwebmp.guicedpersistence.db.AbstractDatabaseProviderModule;
+import com.jwebmp.guicedpersistence.db.DatabaseModule;
 import com.jwebmp.guicedservlets.services.GuiceSiteInjectorModule;
 import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
 import com.jwebmp.logger.LogFactory;
@@ -35,7 +35,7 @@ public class SiteRequestScopedFilterBinder
 	public void onBind(GuiceSiteInjectorModule module)
 	{
 		SiteRequestScopedFilterBinder.log.config("Loading Request Scope Transactions");
-		Set<Class<? extends Annotation>> workOn = AbstractDatabaseProviderModule.getBoundAnnotations();
+		Set<Class<? extends Annotation>> workOn = DatabaseModule.getBoundAnnotations();
 		workOn.removeIf(SiteRequestScopedFilterBinder.excludedAnnotations::contains);
 		for (Class<? extends Annotation> aClass : workOn)
 		{

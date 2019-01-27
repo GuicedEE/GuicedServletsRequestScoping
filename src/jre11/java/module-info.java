@@ -1,6 +1,3 @@
-import com.jwebmp.guicedservlets.requestscoped.SiteRequestScopedFilterBinder;
-import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
-
 module com.jwebmp.guicedservlets.requestscoped {
 
 
@@ -16,6 +13,6 @@ module com.jwebmp.guicedservlets.requestscoped {
 
 	exports com.jwebmp.guicedservlets.requestscoped;
 
-	provides IGuiceSiteBinder with SiteRequestScopedFilterBinder;
+	provides com.jwebmp.guicedservlets.services.IGuiceSiteBinder with com.jwebmp.guicedservlets.requestscoped.SiteRequestScopedFilterBinder;
 
 }

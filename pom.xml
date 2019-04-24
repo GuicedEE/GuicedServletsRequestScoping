@@ -30,6 +30,12 @@
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>com.jwebmp.inject.extensions</groupId>
+            <artifactId>guice-persist</artifactId>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
         </dependency>

@@ -1,6 +1,4 @@
 module com.jwebmp.guicedservlets.requestscoped {
-
-
 	requires com.google.guice;
 	requires javax.servlet.api;
 	requires com.google.guice.extensions.persist;

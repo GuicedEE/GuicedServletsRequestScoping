@@ -1,10 +1,10 @@
-package com.jwebmp.guicedservlets.requestscoped;
+package com.guicedee.guicedservlets.requestscoped;
 
 import com.google.inject.Key;
 import com.google.inject.Singleton;
 import com.google.inject.persist.PersistService;
 import com.google.inject.persist.UnitOfWork;
-import com.jwebmp.guicedinjection.GuiceContext;
+import com.guicedee.guicedinjection.GuiceContext;
 
 import javax.servlet.*;
 import java.io.IOException;

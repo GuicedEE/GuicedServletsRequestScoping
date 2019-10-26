@@ -1,16 +1,16 @@
-module com.jwebmp.guicedservlets.requestscoped {
+module com.guicedee.guicedservlets.requestscoped {
 	requires com.google.guice;
 	requires javax.servlet.api;
 	requires com.google.guice.extensions.persist;
-	requires com.jwebmp.guicedinjection;
-	requires com.jwebmp.guicedservlets;
-	requires com.jwebmp.guicedpersistence;
+	requires com.guicedee.guicedinjection;
+	requires com.guicedee.guicedservlets;
+	requires com.guicedee.guicedpersistence;
 	requires java.logging;
-	requires com.jwebmp.logmaster;
+	requires com.guicedee.logmaster;
 	requires java.validation;
 
-	exports com.jwebmp.guicedservlets.requestscoped;
+	exports com.guicedee.guicedservlets.requestscoped;
 
-	provides com.jwebmp.guicedservlets.services.IGuiceSiteBinder with com.jwebmp.guicedservlets.requestscoped.SiteRequestScopedFilterBinder;
+	provides com.guicedee.guicedservlets.services.IGuiceSiteBinder with com.guicedee.guicedservlets.requestscoped.SiteRequestScopedFilterBinder;
 
 }

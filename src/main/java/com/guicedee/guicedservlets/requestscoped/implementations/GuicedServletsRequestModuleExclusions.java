@@ -1,7 +1,7 @@
-package com.jwebmp.guicedservlets.requestscoped.implementations;
+package com.guicedee.guicedservlets.requestscoped.implementations;
 
-import com.jwebmp.guicedinjection.interfaces.IGuiceScanJarExclusions;
-import com.jwebmp.guicedinjection.interfaces.IGuiceScanModuleExclusions;
+import com.guicedee.guicedinjection.interfaces.IGuiceScanJarExclusions;
+import com.guicedee.guicedinjection.interfaces.IGuiceScanModuleExclusions;
 
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -28,11 +28,11 @@ public class GuicedServletsRequestModuleExclusions
 		strings.add("com.google.guice");
 		strings.add("javax.servlet.api");
 		strings.add("com.google.guice.extensions.persist");
-		strings.add("com.jwebmp.guicedinjection");
+		strings.add("com.guicedee.guicedinjection");
 		strings.add("com.jwebmp.guicedservlets");
-		strings.add("com.jwebmp.guicedpersistence");
+		strings.add("com.guicedee.guicedpersistence");
 		strings.add("java.logging");
-		strings.add("com.jwebmp.logmaster");
+		strings.add("com.guicedee.logmaster");
 		strings.add("java.validation");
 
 

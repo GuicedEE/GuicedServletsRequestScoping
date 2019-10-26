@@ -1,9 +1,9 @@
-package com.jwebmp.guicedservlets.requestscoped;
+package com.guicedee.guicedservlets.requestscoped;
 
-import com.jwebmp.guicedpersistence.db.DatabaseModule;
-import com.jwebmp.guicedservlets.services.GuiceSiteInjectorModule;
-import com.jwebmp.guicedservlets.services.IGuiceSiteBinder;
-import com.jwebmp.logger.LogFactory;
+import com.guicedee.guicedservlets.services.GuiceSiteInjectorModule;
+import com.guicedee.guicedservlets.services.IGuiceSiteBinder;
+import com.guicedee.guicedpersistence.db.DatabaseModule;
+import com.guicedee.logger.LogFactory;
 
 import java.lang.annotation.Annotation;
 import java.util.HashSet;

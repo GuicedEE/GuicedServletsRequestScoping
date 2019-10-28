@@ -23,13 +23,13 @@ public class GuicedServletsRequestModuleExclusions
 	public @NotNull Set<String> excludeModules()
 	{
 		Set<String> strings = new HashSet<>();
-		strings.add("com.jwebmp.guicedservlets.requestscoped");
+		strings.add("com.guicedee.guicedservlets.requestscoped");
 
 		strings.add("com.google.guice");
 		strings.add("javax.servlet.api");
 		strings.add("com.google.guice.extensions.persist");
 		strings.add("com.guicedee.guicedinjection");
-		strings.add("com.jwebmp.guicedservlets");
+		strings.add("com.guicedee.guicedservlets");
 		strings.add("com.guicedee.guicedpersistence");
 		strings.add("java.logging");
 		strings.add("com.guicedee.logmaster");

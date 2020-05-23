@@ -1,6 +1,6 @@
 module com.guicedee.guicedservlets.requestscoped {
 	requires com.google.guice;
-	requires javax.servlet.api;
+	requires java.servlet;
 	requires com.google.guice.extensions.persist;
 	requires com.guicedee.guicedinjection;
 	requires com.guicedee.guicedservlets;

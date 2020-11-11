@@ -6,15 +6,15 @@ import com.google.inject.persist.PersistService;
 import com.google.inject.persist.UnitOfWork;
 import com.guicedee.guicedinjection.GuiceContext;
 
-import javax.servlet.*;
+import jakarta.servlet.*;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 
 /**
  * Apply this filter to enable the HTTP Request unit of work and to have guice-persist manage the
  * lifecycle of active units of work. The filter automatically starts and stops the relevant {@link
- * PersistService} upon {@link javax.servlet.Filter#init(javax.servlet.FilterConfig)} and {@link
- * javax.servlet.Filter#destroy()} respectively.
+ * PersistService} upon {@link jakarta.servlet.Filter#init(jakarta.servlet.FilterConfig)} and {@link
+ * jakarta.servlet.Filter#destroy()} respectively.
  *
  * <p>To be able to use the open session-in-view pattern (i.e. work per request), register this
  * filter <b>once</b> in your Guice {@code ServletModule}. It is important that you register this

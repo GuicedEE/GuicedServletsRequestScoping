@@ -2,7 +2,7 @@ package com.guicedee.guicedservlets.requestscoped.implementations;
 
 import com.guicedee.guicedinjection.interfaces.IGuiceScanModuleExclusions;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +16,7 @@ public class GuicedServletsRequestModuleExclusions
 		strings.add("com.guicedee.guicedservlets.requestscoped");
 
 		strings.add("com.google.guice");
-		strings.add("javax.servlet.api");
+		strings.add("jakarta.servlet.api");
 		strings.add("com.google.guice.extensions.persist");
 		strings.add("com.guicedee.guicedinjection");
 		strings.add("com.guicedee.guicedservlets");

@@ -31,8 +31,8 @@
             <groupId>com.guicedee.services</groupId>
             <artifactId>guice-persist</artifactId>
         </dependency>
-        <dependency>
 
+        <dependency>
             <groupId>com.guicedee.services</groupId>
             <artifactId>commons-io</artifactId>
             <scope>test</scope>

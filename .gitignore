@@ -17,3 +17,5 @@ Thumbs.db
 **/*.factorypath
 **/*.flattened-pom.xml
 **/*.classpath
+/.idea/
+/.flattened-pom.xml

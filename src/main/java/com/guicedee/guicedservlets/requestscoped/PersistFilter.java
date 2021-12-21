@@ -1,14 +1,14 @@
 package com.guicedee.guicedservlets.requestscoped;
 
-import com.google.inject.Key;
-import com.google.inject.Singleton;
-import com.google.inject.persist.PersistService;
-import com.google.inject.persist.UnitOfWork;
-import com.guicedee.guicedinjection.GuiceContext;
-
+import com.google.inject.*;
+import com.google.inject.persist.*;
+import com.guicedee.guicedinjection.*;
+import jakarta.servlet.Filter;
 import jakarta.servlet.*;
-import java.io.IOException;
-import java.lang.annotation.Annotation;
+
+import java.io.*;
+import java.lang.annotation.*;
+import java.util.logging.*;
 
 /**
  * Apply this filter to enable the HTTP Request unit of work and to have guice-persist manage the
@@ -51,20 +51,30 @@ public final class PersistFilter
 {
 	private Key<UnitOfWork> unitOfWorkKey;
 	private Key<PersistService> persistServiceKey;
-
+	private Boolean started = null;
+	
 	public PersistFilter(Class<? extends Annotation> annotation)
 	{
 		unitOfWorkKey = Key.get(UnitOfWork.class, annotation);
 		persistServiceKey = Key.get(PersistService.class, annotation);
 	}
-
+	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException
 	{
-		GuiceContext.get(persistServiceKey)
-		            .start();
+		try
+		{
+			GuiceContext.get(persistServiceKey)
+			            .start();
+			started = true;
+		}
+		catch (Exception e)
+		{
+			Logger.getLogger(getClass().getName())
+			      .log(Level.SEVERE, "Unable to start persist service for servlet call", e);
+		}
 	}
-
+	
 	@Override
 	public void doFilter(
 			ServletRequest servletRequest,
@@ -72,23 +82,32 @@ public final class PersistFilter
 			FilterChain filterChain)
 			throws IOException, ServletException
 	{
-		GuiceContext.get(unitOfWorkKey)
-		            .begin();
+		if (started)
+		{
+			GuiceContext.get(unitOfWorkKey)
+			            .begin();
+		}
 		try
 		{
 			filterChain.doFilter(servletRequest, servletResponse);
 		}
 		finally
 		{
-			GuiceContext.get(unitOfWorkKey)
-			            .end();
+			if (started)
+			{
+				GuiceContext.get(unitOfWorkKey)
+				            .end();
+			}
 		}
 	}
-
+	
 	@Override
 	public void destroy()
 	{
-		GuiceContext.get(persistServiceKey)
-		            .stop();
+		if (started)
+		{
+			GuiceContext.get(persistServiceKey)
+			            .stop();
+		}
 	}
 }

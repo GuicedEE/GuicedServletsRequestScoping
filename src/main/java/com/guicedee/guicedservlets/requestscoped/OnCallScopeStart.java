@@ -6,6 +6,7 @@ import com.google.inject.persist.*;
 import com.guicedee.guicedinjection.*;
 import com.guicedee.guicedpersistence.services.*;
 import com.guicedee.guicedservlets.services.*;
+import com.guicedee.guicedservlets.servlets.services.*;
 
 import java.lang.annotation.*;
 import java.util.*;
@@ -14,10 +15,11 @@ import java.util.logging.*;
 public class OnCallScopeStart implements IOnCallScopeEnter<OnCallScopeStart>
 {
 	@Override
-	public void onScopeEnter()
+	public void onScopeEnter(Scope scope)
 	{
-		List<Map.Entry<Class<? extends Annotation>, com.google.inject.Module>> collect = new ArrayList(PersistenceServicesModule.getModules()
-		                                                                                                                        .entrySet());
+		List<Map.Entry<Class<? extends Annotation>, com.google.inject.Module>> collect = new ArrayList(PersistenceServicesModule
+				                                                                                               .getModules()
+				                                                                                               .entrySet());
 		if (!collect.isEmpty())
 		{
 			for (Map.Entry<Class<? extends Annotation>, Module> entry : collect)
@@ -32,8 +34,9 @@ public class OnCallScopeStart implements IOnCallScopeEnter<OnCallScopeStart>
 				}
 				catch (Exception e)
 				{
-					Logger.getLogger(getClass().getName())
-					      .log(Level.SEVERE, "Unable to start persist service for servlet call", e);
+					Logger
+							.getLogger(getClass().getName())
+							.log(Level.SEVERE, "Unable to start persist service for servlet call", e);
 				}
 			}
 		}
@@ -51,4 +54,5 @@ public class OnCallScopeStart implements IOnCallScopeEnter<OnCallScopeStart>
 	{
 		return Integer.MIN_VALUE + 100;
 	}
+	
 }

@@ -1,18 +1,19 @@
 package com.guicedee.guicedservlets.requestscoped;
 
 import com.google.inject.Module;
+import com.google.inject.servlet.*;
+import com.guicedee.guicedinjection.interfaces.*;
 import com.guicedee.guicedpersistence.services.*;
 import com.guicedee.guicedservlets.services.*;
-import com.guicedee.logger.*;
+import lombok.extern.java.*;
 
 import java.lang.annotation.*;
 import java.util.*;
 import java.util.logging.*;
 
-public class SiteRequestScopedFilterBinder
-		implements IGuiceSiteBinder<GuiceSiteInjectorModule>
+@Log
+public class SiteRequestScopedFilterBinder extends ServletModule implements IGuiceModule<SiteRequestScopedFilterBinder>
 {
-	private static final Logger log = LogFactory.getLog("SiteRequestScopeFilter");
 	/**
 	 * A set of annotations to not assign request scope transactions to
 	 */
@@ -30,24 +31,24 @@ public class SiteRequestScopedFilterBinder
 		return SiteRequestScopedFilterBinder.excludedAnnotations;
 	}
 	
+	
 	@Override
-	public void onBind(GuiceSiteInjectorModule module)
+	protected void configureServlets()
 	{
 		SiteRequestScopedFilterBinder.log.config("Loading Request Scope Transactions");
-		List<Map.Entry<Class<? extends Annotation>, com.google.inject.Module>> collect = new ArrayList(PersistenceServicesModule.getModules()
-		                                                                                                                        .entrySet());
+		List<Map.Entry<Class<? extends Annotation>, com.google.inject.Module>> collect = new ArrayList(PersistenceServicesModule
+				                                                                                               .getModules()
+				                                                                                               .entrySet());
 		if (!collect.isEmpty())
 		{
 			for (Map.Entry<Class<? extends Annotation>, Module> entry : collect)
 			{
 				PersistFilter filter = new PersistFilter(entry.getKey());
-				module.filter$("/*")
-				      .through(filter);
+				filter("/*").through(filter);
 				SiteRequestScopedFilterBinder.log.config("Request Scoped Filter Added, Initial Entry @" + entry.getKey());
-				
+				log.log(Level.CONFIG, "Started " + collect.size() + " Request Scope on Module - " + entry);
 			}
 		}
-		log.log(Level.CONFIG, "Started " + collect.size() + " Request Scopes");
 	}
 	
 	@Override

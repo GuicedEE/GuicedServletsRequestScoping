@@ -6,6 +6,7 @@ import com.google.inject.persist.*;
 import com.guicedee.guicedinjection.*;
 import com.guicedee.guicedpersistence.services.*;
 import com.guicedee.guicedservlets.services.*;
+import com.guicedee.guicedservlets.servlets.services.*;
 
 import java.lang.annotation.*;
 import java.sql.*;

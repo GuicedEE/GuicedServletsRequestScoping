@@ -3,7 +3,7 @@ package com.guicedee.guicedservlets.requestscoped;
 import com.google.inject.Module;
 import com.google.inject.*;
 import com.google.inject.persist.*;
-import com.guicedee.guicedinjection.*;
+import com.guicedee.client.*;
 import com.guicedee.guicedpersistence.services.*;
 import com.guicedee.guicedservlets.services.*;
 import com.guicedee.guicedservlets.servlets.services.*;
@@ -25,8 +25,8 @@ public class OnCallScopeStart implements IOnCallScopeEnter<OnCallScopeStart>
 			for (Map.Entry<Class<? extends Annotation>, Module> entry : collect)
 			{
 				Class<? extends Annotation> key = entry.getKey();
-				PersistService persistServiceKey = GuiceContext.get(Key.get(PersistService.class, key));
-				UnitOfWork unitOfWork = GuiceContext.get(Key.get(UnitOfWork.class, key));
+				PersistService persistServiceKey = IGuiceContext.get(Key.get(PersistService.class, key));
+				UnitOfWork unitOfWork = IGuiceContext.get(Key.get(UnitOfWork.class, key));
 				try
 				{
 					persistServiceKey.start();

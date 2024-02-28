@@ -2,7 +2,7 @@ package com.guicedee.guicedservlets.requestscoped;
 
 import com.google.inject.*;
 import com.google.inject.persist.*;
-import com.guicedee.guicedinjection.*;
+import com.guicedee.client.*;
 import jakarta.servlet.Filter;
 import jakarta.servlet.*;
 
@@ -64,8 +64,9 @@ public final class PersistFilter
 	{
 		try
 		{
-			GuiceContext.get(persistServiceKey)
-			            .start();
+			IGuiceContext
+					.get(persistServiceKey)
+					.start();
 			started = true;
 		}
 		catch (Exception e)
@@ -84,7 +85,7 @@ public final class PersistFilter
 	{
 		if (started)
 		{
-			GuiceContext.get(unitOfWorkKey)
+			IGuiceContext.get(unitOfWorkKey)
 			            .begin();
 		}
 		try
@@ -95,7 +96,7 @@ public final class PersistFilter
 		{
 			if (started)
 			{
-				GuiceContext.get(unitOfWorkKey)
+				IGuiceContext.get(unitOfWorkKey)
 				            .end();
 			}
 		}
@@ -106,7 +107,7 @@ public final class PersistFilter
 	{
 		if (started)
 		{
-			GuiceContext.get(persistServiceKey)
+			IGuiceContext.get(persistServiceKey)
 			            .stop();
 		}
 	}

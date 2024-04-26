@@ -1,14 +1,33 @@
+/*
+ * Copyright (C) 2010 Google, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.guicedee.guicedservlets.requestscoped;
 
-import com.google.inject.*;
-import com.google.inject.persist.*;
-import com.guicedee.guicedinjection.*;
-import jakarta.servlet.Filter;
-import jakarta.servlet.*;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import java.io.IOException;
 
-import java.io.*;
-import java.lang.annotation.*;
-import java.util.logging.*;
+import com.google.inject.persist.PersistService;
+import com.google.inject.persist.UnitOfWork;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 
 /**
  * Apply this filter to enable the HTTP Request unit of work and to have guice-persist manage the
@@ -46,68 +65,38 @@ import java.util.logging.*;
  * @author Dhanji R. Prasanna (dhanji@gmail.com)
  */
 @Singleton
-public final class PersistFilter
-		implements Filter
-{
-	private Key<UnitOfWork> unitOfWorkKey;
-	private Key<PersistService> persistServiceKey;
-	private Boolean started = null;
-	
-	public PersistFilter(Class<? extends Annotation> annotation)
-	{
-		unitOfWorkKey = Key.get(UnitOfWork.class, annotation);
-		persistServiceKey = Key.get(PersistService.class, annotation);
+public final class PersistFilter implements Filter {
+	private final UnitOfWork unitOfWork;
+	private final PersistService persistService;
+
+	@Inject
+	public PersistFilter(UnitOfWork unitOfWork, PersistService persistService) {
+		this.unitOfWork = unitOfWork;
+		this.persistService = persistService;
 	}
-	
+
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException
-	{
-		try
-		{
-			GuiceContext.get(persistServiceKey)
-			            .start();
-			started = true;
-		}
-		catch (Exception e)
-		{
-			Logger.getLogger(getClass().getName())
-			      .log(Level.SEVERE, "Unable to start persist service for servlet call", e);
-		}
+	public void init(FilterConfig filterConfig) throws ServletException {
+		persistService.start();
 	}
-	
+
+	@Override
+	public void destroy() {
+		persistService.stop();
+	}
+
 	@Override
 	public void doFilter(
-			ServletRequest servletRequest,
-			ServletResponse servletResponse,
-			FilterChain filterChain)
-			throws IOException, ServletException
-	{
-		if (started)
-		{
-			GuiceContext.get(unitOfWorkKey)
-			            .begin();
-		}
-		try
-		{
+			final ServletRequest servletRequest,
+			final ServletResponse servletResponse,
+			final FilterChain filterChain)
+			throws IOException, ServletException {
+
+		unitOfWork.begin();
+		try {
 			filterChain.doFilter(servletRequest, servletResponse);
-		}
-		finally
-		{
-			if (started)
-			{
-				GuiceContext.get(unitOfWorkKey)
-				            .end();
-			}
-		}
-	}
-	
-	@Override
-	public void destroy()
-	{
-		if (started)
-		{
-			GuiceContext.get(persistServiceKey)
-			            .stop();
+		} finally {
+			unitOfWork.end();
 		}
 	}
 }
